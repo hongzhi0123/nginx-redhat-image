@@ -13,7 +13,8 @@ RUN yum -y remove nginx-mod-http-perl nginx-mod-stream nginx && \
     yum -y install http://nginx.org/packages/rhel/9/x86_64/RPMS/nginx-1.24.0-1.el9.ngx.x86_64.rpm
 
 # Changing ownership
-RUN chown -R 1001:0 ${NGINX_CONF_PATH}
+RUN chown -R 1001:0 ${NGINX_CONF_PATH} && \
+    chmod -R ug+rwX /var/lib/nginx /var/log/nginx /run
 
 USER 1001
 RUN /usr/libexec/s2i/assemble

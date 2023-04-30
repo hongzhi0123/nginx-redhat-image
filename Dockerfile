@@ -14,7 +14,9 @@ RUN yum -y remove nginx-mod-http-perl nginx-mod-stream nginx && \
 
 # Changing ownership
 RUN chown -R 1001:0 ${NGINX_CONF_PATH} && \
-    chmod -R ug+rwX /var/lib/nginx /var/log/nginx /run
+    chown -R 1001:0 /var/cache/nginx /var/log/nginx /run && \
+    chmod    ug+rw  ${NGINX_CONF_PATH} && \
+    chmod -R ug+rwX /var/cache/nginx /var/log/nginx /run
 
 USER 1001
 RUN /usr/libexec/s2i/assemble

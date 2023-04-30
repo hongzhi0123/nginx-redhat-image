@@ -6,6 +6,7 @@ ENV releasever=9 \
 USER root
 COPY ./ /tmp/src
 RUN chown -R 1001:0 /tmp/src
+COPY ./nginx.repo /etc/yum.repos.d/
 COPY ./nginx_signing.key /etc/pki/rpm-gpg/
 
 RUN yum -y remove nginx-mod-http-perl nginx-mod-stream nginx && \

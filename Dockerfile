@@ -9,7 +9,7 @@ RUN chown -R 1001:0 /tmp/src
 COPY ./nginx_signing.key /etc/pki/rpm-gpg/
 
 RUN yum remove nginx-mod-http-perl nginx-mod-stream nginx && \
-    yum install nginx
+    yum -y install nginx
 
 USER 1001
 RUN /usr/libexec/s2i/assemble
